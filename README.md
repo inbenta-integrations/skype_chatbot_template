@@ -1,8 +1,6 @@
 ### OBJECTIVE
 This template has been implemented in order to develop Skype bots that consume from the new Inbenta Chatbot API with the minimum configuration and effort. The main class of this template is `SkypeConnector`. This class extends from a parent class named `ChatbotConnector` that can be used to develop bots for other external services like Facebook, Slack, WhatsApp, etc...
 
-This template has been implemented to be used until Product chapter provide an official solution to connect our bots to external messaging services.
-
 ### FUNCTIONALITIES
 This bot template inherits the functionalities from the `ChatbotConnector` library. Currently the features provided by that application are:
 
