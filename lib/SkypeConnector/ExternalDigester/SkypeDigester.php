@@ -118,7 +118,8 @@ class SkypeDigester extends DigesterInterface
 				return $type;
 			}
 		}
-	}
+        throw new Exception("Unknown Skype message type");
+    }
 
 	/**
 	**	Classifies the API message into one of the defined $apiMessageTypes
