@@ -14,14 +14,14 @@ class SkypeConnector extends ChatbotConnector
 
 	public function __construct($appPath)
 	{
+		parent::__construct($appPath);
+
+		//Store request
+		$request = file_get_contents('php://input'); 
+		$conversationConf = array('configuration' => $this->conf->get('conversation.default'), 'userType' => $this->conf->get('conversation.user_type'), 'environment' => $this->environment);
+
+		//Initialize and configure specific components for Skype
 		try {
-			parent::__construct($appPath);
-
-			//Store request
-			$request = file_get_contents('php://input');
-			$conversationConf = array('configuration' => $this->conf->get('conversation.default'), 'userType' => $this->conf->get('conversation.user_type'), 'environment' => $this->environment);
-
-			//Initialize and configure specific components for Skype
 			$this->session 		= new SessionManager($this->getExternalIdFromRequest()); 												// Initialize session manager with user id
 			$this->botClient 	= new ChatbotAPIClient($this->conf->get('api.key'), $this->conf->get('api.secret'), $this->session, $conversationConf);
 
@@ -90,7 +90,6 @@ class SkypeConnector extends ChatbotConnector
 				// Create a temporary session_id from a HyperChat webhook linking request
 				$externalId = "hc-challenge-" . preg_replace("/[^A-Za-z0-9 ]/", '', $api_key);
 			} else {
-				throw new Exception("Invalid request");
 				die();
 			}
 		}
